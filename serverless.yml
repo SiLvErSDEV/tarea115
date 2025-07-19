@@ -7,16 +7,11 @@ provider:
   memorySize: 1024
   timeout: 20
   iam:
-    role:
-      statements:
-        - Effect: Allow
-          Action:
-            - secretsmanager:GetSecretValue
-          Resource: "arn:aws:secretsmanager:us-east-1:890668988889:secret:/rds_mysql_alumnos/credentials-mZQzBN"
-    environment:
-      SECRET_NAME: /rds_mysql_alumnos/credentials
-      DB_NAME: ${sls:stage}
-      STAGE: ${sls:stage}
+    role: arn:aws:iam::890668988889:role/LabRole
+  environment:
+    SECRET_NAME: /rds_mysql_alumnos/credentials
+    DB_NAME: ${sls:stage}
+    STAGE: ${sls:stage}
 
 functions:
   listar:
